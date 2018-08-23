@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import './ListTitle.css';
 
 const ListTitle = ({
-  title, count, click, data,
+  title,
+  count,
+  click,
+  data,
 }) => (
   <button className="list-title" disabled={data.disabled} onClick={() => click(data)}>
     <span className="title">{ title }</span>

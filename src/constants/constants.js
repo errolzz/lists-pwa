@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const SETTINGS = {
   SITE_ROOT: '',
 };
@@ -11,10 +13,23 @@ export const COLORS = {
 
 export const LABELS = {
   CREATE_NEW_LIST: '+ Create New List',
+  DELETE: 'Delete',
+  DELETE_X: 'X',
 };
 
-export const HTTP = {
-  LAST_API: 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=unsungslaughter&api_key=43cfd9f3b17f5a216e6601321ae7d0f5&limit=5&format=json',
+export const PROPS = {
+  LIST: {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    isChecklist: PropTypes.bool,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      done: PropTypes.bool,
+      deleting: PropTypes.bool,
+    })),
+  },
 };
 
 export const LISTS = [

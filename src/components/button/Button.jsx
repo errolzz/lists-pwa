@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Button.css';
 
-const Button = ({ label, click, data }) => (
-  <button onClick={() => click(data)}>
+const Button = ({ label, click, data, classes }) => (
+  <button className={classes} onClick={() => click(data)}>
     <span>{ label }</span>
   </button>
 );
@@ -11,6 +11,7 @@ const Button = ({ label, click, data }) => (
 Button.propTypes = {
   label: PropTypes.string,
   click: PropTypes.func,
+  classes: PropTypes.string,
   data: PropTypes.shape({
     id: PropTypes.string,
   }),
@@ -19,6 +20,7 @@ Button.propTypes = {
 Button.defaultProps = {
   label: undefined,
   click: undefined,
+  classes: undefined,
   data: undefined,
 };
 

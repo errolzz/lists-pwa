@@ -1,11 +1,15 @@
-export function addItemToListUpdate(lists, listId, item) {
+export function addItemToList(lists, listId, item) {
   const newLists = lists.slice();
   const listToAddTo = newLists.find(list => list.id === listId);
   listToAddTo.push(item);
   return newLists;
 }
 
-export function deleteItemFromListUpdate(lists, listId, itemId) {
+export function setItemUpForDelete(lists, listId, itemId) {
+
+}
+
+export function deleteItemFromList(lists, listId, itemId) {
   const newLists = lists.slice();
   const listToDeleteFrom = newLists.find(list => list.id === listId);
   const newList = listToDeleteFrom.slice();
@@ -18,7 +22,7 @@ export function deleteItemFromListUpdate(lists, listId, itemId) {
   return newLists;
 }
 
-export function moveItemInListUpdate(lists, listId, itemId, oldIndex, newIndex) {
+export function moveItemInList(lists, listId, itemId, oldIndex, newIndex) {
   const newLists = lists.slice();
   const listToMoveAround = newLists.find(list => list.id === listId);
   while (oldIndex < 0) {
@@ -35,4 +39,12 @@ export function moveItemInListUpdate(lists, listId, itemId, oldIndex, newIndex) 
   }
   listToMoveAround.splice(newIndex, 0, listToMoveAround.splice(oldIndex, 1)[0]);
   return newLists;
+}
+
+export function toggleItemInList(lists, listId, itemId, value) {
+
+}
+
+export function toggleAllItemsInList(lists, listId, value) {
+
 }
