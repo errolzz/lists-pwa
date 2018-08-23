@@ -1,0 +1,15 @@
+@import 'reset-css';
+
+:root {
+  --white: #ffffff;
+  --black: #161616;
+  --action: #666666;
+  --link: #999999;
+  --cubeSize: 200px;
+}
+
+img {
+  &:hover {
+    transform: rotate(180deg);
+  }
+}

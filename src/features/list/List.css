@@ -1,0 +1,15 @@
+@import '../../constants/constants.css';
+
+.something {
+  text-transform: uppercase;
+  color: var(--black);
+
+  & .counter {
+    padding: 20px;
+    cursor: pointer;
+  }
+
+  &.active {
+    color: var(--red);
+  }
+}
