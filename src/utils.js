@@ -9,6 +9,10 @@ export function setItemUpForDelete(lists, listId, itemId) {
 
 }
 
+export function setListUpForDelete(lists, listId) {
+  
+}
+
 export function deleteItemFromList(lists, listId, itemId) {
   const newLists = lists.slice();
   const listToDeleteFrom = newLists.find(list => list.id === listId);

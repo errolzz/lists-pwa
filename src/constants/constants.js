@@ -15,6 +15,8 @@ export const LABELS = {
   CREATE_NEW_LIST: '+ Create New List',
   DELETE: 'Delete',
   DELETE_X: 'X',
+  RESET: 'Reset Checklist',
+  ADD_ITEM: 'Add a new item',
 };
 
 export const PROPS = {
@@ -23,6 +25,7 @@ export const PROPS = {
     title: PropTypes.string.isRequired,
     color: PropTypes.string,
     isChecklist: PropTypes.bool,
+    deleting: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,

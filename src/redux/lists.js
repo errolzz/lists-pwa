@@ -3,6 +3,7 @@ import {
   addItemToList,
   setItemUpForDelete,
   deleteItemFromList,
+  setListUpForDelete,
   moveItemInList,
   toggleItemInList,
   toggleAllItemsInList,
@@ -14,6 +15,8 @@ const SHOW_LIST = 'features/lists/SHOW_LIST';
 const SHOW_LIST_FORM = 'features/lists/SHOW_LIST_FORM';
 const CREATE_LIST = 'features/lists/CREATE_LIST';
 const ADD_ITEM = 'features/lists/ADD_ITEM';
+const SHOW_DELETE_LIST = 'features/lists/SHOW_DELETE_LIST';
+const DELETE_LIST = 'features/lists/DELETE_LIST';
 const SHOW_DELETE_ITEM = 'features/lists/SHOW_DELETE_ITEM';
 const DELETE_ITEM = 'features/lists/DELETE_ITEM';
 const MOVE_ITEM = 'features/lists/MOVE_ITEM';
@@ -55,6 +58,11 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         lists: addItemToList(state.lists, action.listId, action.item),
+      };
+    case SHOW_DELETE_LIST:
+      return {
+        ...state,
+        lists: setListUpForDelete(state.lists, action.listId, value),
       };
     case SHOW_DELETE_ITEM:
       return {
@@ -108,6 +116,14 @@ export function addItem(listId, item) {
 
 export function showDeleteItem(listId, itemId) {
   return { type: SHOW_DELETE_ITEM, listId, itemId };
+}
+
+export function showDeleteList(listId, value) {
+  return { type: SHOW_DELETE_LIST, listId, value };
+}
+
+export function deleteList(listId) {
+  return { type: DELETE_LIST, listId };
 }
 
 export function deleteItem(listId, itemId) {

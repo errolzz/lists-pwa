@@ -32,16 +32,16 @@ const Home = ({
         <div className="create-list">
           <Button
             label={LABELS.CREATE_NEW_LIST}
-            click={showListForm}
+            click={() => showListForm(true)}
           />
         </div>
       </div>
     }
     { listId &&
-      <ConnectedList />
+      <ConnectedList listData={lists.find(list => list.id === listId)} />
     }
     { creatingList &&
-      <ConnectedListForm />
+      <ConnectedListForm updateData={lists.find(list => list.id === listId)} />
     }
   </div>
 );
