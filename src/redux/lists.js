@@ -9,6 +9,8 @@ import {
   toggleItemInList,
   toggleAllItemsInList,
   updateListInLists,
+  createNewList,
+  resetListActions,
 } from '../utils';
 
 // actions
@@ -45,6 +47,7 @@ export default function reducer(state = initialState, action = {}) {
     case CLOSE_LIST:
       return {
         ...state,
+        lists: resetListActions(state.lists),
         listId: undefined,
       };
     case SHOW_LIST_FORM:
@@ -55,13 +58,13 @@ export default function reducer(state = initialState, action = {}) {
     case CREATE_LIST:
       return {
         ...state,
-        lists: state.lists.push(action.listData), // TODO: create real list object
+        lists: createNewList(state.lists, action.listData),
         creatingList: false,
       };
     case UPDATE_LIST:
       return {
         ...state,
-        lists: updateListInLists(state.lists, action.listData), // TODO: create real list object
+        lists: updateListInLists(state.lists, action.listData),
         creatingList: false,
       };
     case ADD_ITEM:
@@ -155,9 +158,9 @@ export function moveItem(listId, oldIndex, newIndex) {
 }
 
 export function toggleItem(listId, itemId) {
-  return { type: MOVE_ITEM, listId, itemId };
+  return { type: TOGGLE_ITEM, listId, itemId };
 }
 
 export function toggleAllItems(listId, value) {
-  return { type: MOVE_ITEM, listId, value };
+  return { type: TOGGLE_ALL_ITEMS, listId, value };
 }

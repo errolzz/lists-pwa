@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../components/button/Button';
 import ListTitle from '../../components/list-title/ListTitle';
 import { LABELS, PROPS } from '../../constants/constants';
+import { getUniqueId } from '../../utils';
 import './List.css';
 
 
@@ -32,7 +33,7 @@ class List extends React.Component {
 
   addNewItem() {
     const newItem = {
-      id: (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase(),
+      id: getUniqueId(),
       title: this.state.newItemText,
       done: false,
       deleting: false,
@@ -57,7 +58,7 @@ class List extends React.Component {
               <li key={item.id} className="list-item">
                 { currentList.isChecklist &&
                   <button
-                    className={`checkbox${item.done ? ' done' : ''}`}
+                    className={`checkbox${item.done ? ' checked' : ''}`}
                     onClick={() => this.props.toggleItem(currentList.id, item.id)}
                   />
                 }
@@ -70,10 +71,16 @@ class List extends React.Component {
                   />
                 }
                 { item.deleting &&
-                  <Button
-                    label={LABELS.DELETE}
-                    click={() => this.props.deleteItem(currentList.id, item.id)}
-                  />
+                  <div>
+                    <Button
+                      label={LABELS.CANCEL}
+                      click={() => this.props.showDeleteItem(currentList.id, item.id)}
+                    />
+                    <Button
+                      label={LABELS.DELETE}
+                      click={() => this.props.deleteItem(currentList.id, item.id)}
+                    />
+                  </div>
                 }
               </li>
             ))}
@@ -81,7 +88,7 @@ class List extends React.Component {
           { currentList.isChecklist &&
             <Button
               label={LABELS.RESET}
-              click={() => this.props.toggleAllItems(false)}
+              click={() => this.props.toggleAllItems(currentList.id, false)}
             />
           }
         </div>
@@ -95,12 +102,12 @@ class List extends React.Component {
           />
           <Button
             label={LABELS.ADD_ITEM_ICON}
-            onClick={this.clearAddItem}
+            click={this.clearAddItem}
             classes={`clear-add-item${this.state.newItemText.length > 0 ? ' clear' : ''}`}
           />
           <Button
             label={LABELS.ADD_ITEM_ICON}
-            onClick={this.addNewItem}
+            click={this.addNewItem}
             classes="confirm-add-item"
             disabled={this.state.newItemText.length === 0}
           />
@@ -109,7 +116,7 @@ class List extends React.Component {
           { !currentList.deleting &&
             <div>
               <Button
-                label={LABELS.DELETE}
+                label={LABELS.DELETE_LIST}
                 click={() => this.props.showDeleteList(currentList.id, true)}
                 classes="delete"
               />

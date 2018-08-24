@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../components/button/Button';
 import ListTitle from '../../components/list-title/ListTitle';
 import { LABELS, PROPS, COLORS } from '../../constants/constants';
+import { getUniqueId } from '../../utils';
 import './ListForm.css';
 
 class ListForm extends React.Component {
@@ -14,6 +15,7 @@ class ListForm extends React.Component {
     this.currentList = this.props.lists.find(list => list.id === this.props.listId);
     this.state = {
       listNameText: this.currentList ? this.currentList.title : '',
+      checklist: this.currentList ? this.currentList.isChecklist : false,
     };
   }
 
@@ -25,9 +27,21 @@ class ListForm extends React.Component {
 
   submitList() {
     if (this.currentList) {
-      this.props.updateList();
+      this.props.updateList({
+        id: this.currentList.id,
+        title: this.state.listNameText,
+        color: this.state.color,
+        isChecklist: this.state.checklist,
+      });
     } else {
-      this.props.createList();
+      this.props.createList({
+        id: getUniqueId(),
+        title: this.state.listNameText,
+        color: this.state.color,
+        isChecklist: this.state.checklist,
+        deleting: false,
+        items: [],
+      });
     }
   }
 
@@ -46,6 +60,7 @@ class ListForm extends React.Component {
           <p>{LABELS.LIST_NAME}</p>
           <input
             type="text"
+            ref={this.listNameField}
             onChange={this.listNameChange}
             value={this.state.listNameText}
           />
@@ -59,7 +74,12 @@ class ListForm extends React.Component {
           </div>
         </div>
         <div className="form-section">
-          <p>{LABELS.MAKE_CHECKLIST}</p>
+          <button
+            className={`checkbox${this.state.checklist ? ' checked' : ''}`}
+            onClick={() => this.setState({ checklist: !this.state.checklist })}
+          >
+            <span>{LABELS.MAKE_CHECKLIST}</span>
+          </button>
         </div>
         <div className="form-footer">
           <Button
@@ -69,6 +89,7 @@ class ListForm extends React.Component {
           <Button
             label={this.currentList ? LABELS.APPLY_CHANGES : LABELS.CREATE_LIST}
             click={this.submitList}
+            disabled={this.state.listNameText.length === 0}
           />
         </div>
       </div>

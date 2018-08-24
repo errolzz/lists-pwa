@@ -13,6 +13,7 @@ export const COLORS = [
 export const LABELS = {
   CREATE_NEW_LIST: '+ Create New List',
   DELETE: 'Delete',
+  DELETE_LIST: 'Delete List',
   EDIT: 'Edit',
   DELETE_X: 'X',
   RESET: 'Reset Checklist',
@@ -24,6 +25,9 @@ export const LABELS = {
   LIST_NAME: 'List Name',
   LIST_COLOR: 'List Color',
   MAKE_CHECKLIST: 'Make Checklist',
+  APPLY_CHANGES: 'Apply Changes',
+  CREATE_LIST: 'Create List',
+  CANCEL: 'Cancel',
 };
 
 export const PROPS = {
