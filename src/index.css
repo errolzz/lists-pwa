@@ -1,11 +1,36 @@
 @import 'reset-css';
+@import './constants/constants.css';
 
-:root {
-  --white: #ffffff;
-  --black: #161616;
-  --action: #666666;
-  --link: #999999;
-  --cubeSize: 200px;
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--mid);
+  font-size: 16px;
+  font-weight: bold;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: var(--mid);
+  font-size: 16px;
+  font-weight: bold;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: var(--mid);
+  font-size: 16px;
+  font-weight: bold;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: var(--mid);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  background: var(--bg);
 }
 
 button {
@@ -14,16 +39,34 @@ button {
   margin: 0;
   border: 0;
   background: transparent;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+input {
+  border: 0px;
+  outline: none;
+  color: var(--mid);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 22px;
+  box-sizing: border-box;
+  background: transparent;
 }
 
 .checkbox {
-  border: 1px solid var(--black);
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  display: inline-block;
+  display: block;
+
+  & .checkbox-dot {
+    border: 1px solid var(--bg);
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin: 25px;
+  }
 
   &.checked {
-    background: var(--black);
+    background: var(--bg);
   }
 }

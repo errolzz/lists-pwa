@@ -1,10 +1,10 @@
 :root {
-  --black: #222;
-  --white: #FFFFFF;
-  --red: #FF2424;
-  --hover-gray: #F9F9F9;
-  --bg-gray: #F0F0F0;
-  --light-gray: #DDDDDD;
-  --line-gray: #ECECEC;
-  --med-gray: #999999;
+  --bg: #FCE38A;
+  --bg-fade: #F5D14F;
+  --mid: #F38181;
+  --fore: #FCE38A;
+  --main-text: #FCE38A;
+  --cancel-text: #E05555;
+  --confirm-text: #FCE38A;
+  --plus-size: 22px;
 }

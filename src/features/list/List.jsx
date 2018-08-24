@@ -45,7 +45,7 @@ class List extends React.Component {
   render() {
     const currentList = this.props.lists.find(list => list.id === this.props.listId);
     return (
-      <div>
+      <div className="list">
         <ListTitle
           id={currentList.id}
           title={currentList.title}
@@ -55,29 +55,33 @@ class List extends React.Component {
         <div className="list-scroller">
           <ul>
             { currentList.items.map(item => (
-              <li key={item.id} className="list-item">
+              <li key={item.id} className={`list-item${currentList.isChecklist ? ' with-check' : ''}`}>
                 { currentList.isChecklist &&
                   <button
                     className={`checkbox${item.done ? ' checked' : ''}`}
                     onClick={() => this.props.toggleItem(currentList.id, item.id)}
-                  />
+                  >
+                    <div className="checkbox-dot" />
+                  </button>
                 }
-                <span>{item.title}</span>
+                <div className="item-title">{item.title}</div>
                 { !item.deleting &&
                   <Button
                     label={LABELS.DELETE_X}
-                    classes="subtle"
+                    classes="remove-item"
                     click={() => this.props.showDeleteItem(currentList.id, item.id)}
                   />
                 }
                 { item.deleting &&
-                  <div>
+                  <div className="confirm-delete">
                     <Button
                       label={LABELS.CANCEL}
+                      classes="cancel"
                       click={() => this.props.showDeleteItem(currentList.id, item.id)}
                     />
                     <Button
                       label={LABELS.DELETE}
+                      classes="confirm"
                       click={() => this.props.deleteItem(currentList.id, item.id)}
                     />
                   </div>
@@ -112,35 +116,33 @@ class List extends React.Component {
             disabled={this.state.newItemText.length === 0}
           />
         </div>
-        <div className="list-controls">
-          { !currentList.deleting &&
-            <div>
-              <Button
-                label={LABELS.DELETE_LIST}
-                click={() => this.props.showDeleteList(currentList.id, true)}
-                classes="delete"
-              />
-              <Button
-                label={LABELS.EDIT}
-                click={() => this.props.showListForm(true)}
-              />
-            </div>
-          }
-          { currentList.deleting &&
-            <div>
-              <span>{LABELS.CONFIRM_DELETE}</span>
-              <Button
-                label={LABELS.NO}
-                click={() => this.props.showDeleteList(currentList.id, false)}
-              />
-              <Button
-                label={LABELS.YES}
-                click={() => this.props.deleteList(currentList.id)}
-                classes="delete"
-              />
-            </div>
-          }
-        </div>
+        { !currentList.deleting &&
+          <div className="list-controls">
+            <Button
+              label={LABELS.DELETE_LIST}
+              click={() => this.props.showDeleteList(currentList.id, true)}
+              classes="delete"
+            />
+            <Button
+              label={LABELS.EDIT}
+              click={() => this.props.showListForm(true)}
+            />
+          </div>
+        }
+        { currentList.deleting &&
+          <div className="list-controls">
+            <span>{LABELS.CONFIRM_DELETE}</span>
+            <Button
+              label={LABELS.NO}
+              click={() => this.props.showDeleteList(currentList.id, false)}
+            />
+            <Button
+              label={LABELS.YES}
+              click={() => this.props.deleteList(currentList.id)}
+              classes="delete"
+            />
+          </div>
+        }
       </div>
     );
   }

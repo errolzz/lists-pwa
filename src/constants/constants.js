@@ -11,11 +11,11 @@ export const COLORS = [
 ];
 
 export const LABELS = {
-  CREATE_NEW_LIST: '+ Create New List',
+  CREATE_NEW_LIST: '+ New List',
   DELETE: 'Delete',
   DELETE_LIST: 'Delete List',
   EDIT: 'Edit',
-  DELETE_X: 'X',
+  DELETE_X: '+',
   RESET: 'Reset Checklist',
   ADD_ITEM: 'Add a new item',
   ADD_ITEM_ICON: '+',

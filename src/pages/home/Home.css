@@ -1,0 +1,9 @@
+@import '../../constants/constants.css';
+
+.home {
+  & .create-list {
+    & button {
+      color: var(--mid);
+    }
+  }
+}

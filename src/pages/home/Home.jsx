@@ -6,6 +6,7 @@ import Button from '../../components/button/Button';
 import ListTitle from '../../components/list-title/ListTitle';
 import ConnectedList from '../../features/list/ConnectedList';
 import ConnectedListForm from '../../features/list-form/ConnectedListForm';
+import './Home.css';
 
 const Home = ({
   lists,
@@ -14,7 +15,7 @@ const Home = ({
   showListForm,
   creatingList,
 }) => (
-  <div className="page-home">
+  <div className="home">
     <Helmet>
       <title>Lists</title>
     </Helmet>

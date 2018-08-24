@@ -1,17 +1,32 @@
 @import '../../constants/constants.css';
 
-.button {
+button, .button {
   border: 0;
   outline: 0;
-  width: 200px;
-  height: 40px;
+  height: 60px;
   text-align: center;
-  background: var(--black);
-  color: var(--white);
-  padding: 10px;
+  background: transparent;
+  color: var(--main-text);
+  padding: 12px;
   cursor: pointer;
   font-size: 16px;
+  width: 100%;
   box-sizing: border-box;
-  margin: 10px 0;
   display: block;
+
+  & span {
+    display: block;
+  }
+
+  &.cancel {
+    color: var(--cancel-text);
+  }
+
+  &.confirm {
+    color: var(--confirm-text);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
 }
