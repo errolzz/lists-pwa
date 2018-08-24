@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../components/button/Button';
 import ListTitle from '../../components/list-title/ListTitle';
-import { LABELS, PROPS, COLORS } from '../../constants/constants';
+import { LABELS, PROPS } from '../../constants/constants';
 import { getUniqueId } from '../../utils';
 import './ListForm.css';
 
@@ -57,37 +57,40 @@ class ListForm extends React.Component {
           />
         }
         <div className="form-section">
-          <p>{LABELS.LIST_NAME}</p>
           <input
             type="text"
+            placeholder={LABELS.LIST_NAME}
             ref={this.listNameField}
             onChange={this.listNameChange}
             value={this.state.listNameText}
           />
         </div>
-        <div className="form-section">
+        {/*<div className="form-section">
           <p>{LABELS.LIST_COLOR}</p>
           <div className="swatches">
             { COLORS.map(color => (
               <div className="color" style={{ background: color }} key={color} />
             ))}
           </div>
-        </div>
+        </div>*/}
         <div className="form-section">
           <button
             className={`checkbox${this.state.checklist ? ' checked' : ''}`}
             onClick={() => this.setState({ checklist: !this.state.checklist })}
           >
+            <div className="checkbox-dot" />
             <span>{LABELS.MAKE_CHECKLIST}</span>
           </button>
         </div>
         <div className="form-footer">
           <Button
             label={LABELS.CANCEL}
+            classes="cancel"
             click={() => this.props.showListForm(false)}
           />
           <Button
             label={this.currentList ? LABELS.APPLY_CHANGES : LABELS.CREATE_LIST}
+            classes="confirm"
             click={this.submitList}
             disabled={this.state.listNameText.length === 0}
           />

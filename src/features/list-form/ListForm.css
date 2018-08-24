@@ -1,3 +1,29 @@
+@import '../../constants/constants.css';
+
 .list-form {
-  
+
+  & .form-section {
+    box-sizing: border-box;
+    padding: var(--plus-size);
+  }
+
+  & input {
+    width: 100%;
+  }
+
+  & .checkbox {
+    width: auto;
+    & span {
+      color: var(--mid);
+    }
+  }
+
+  & .form-footer {
+    display: flex;
+    justify-content: space-between;
+
+    & button.confirm {
+      color: var(--mid);
+    }
+  }
 }
