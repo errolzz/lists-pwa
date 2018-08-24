@@ -3,10 +3,12 @@ import {
   addItemToList,
   setItemUpForDelete,
   deleteItemFromList,
+  deleteListFromLists,
   setListUpForDelete,
   moveItemInList,
   toggleItemInList,
   toggleAllItemsInList,
+  updateListInLists,
 } from '../utils';
 
 // actions
@@ -14,6 +16,7 @@ const CLOSE_LIST = 'features/lists/CLOSE_LIST';
 const SHOW_LIST = 'features/lists/SHOW_LIST';
 const SHOW_LIST_FORM = 'features/lists/SHOW_LIST_FORM';
 const CREATE_LIST = 'features/lists/CREATE_LIST';
+const UPDATE_LIST = 'features/lists/UPDATE_LIST';
 const ADD_ITEM = 'features/lists/ADD_ITEM';
 const SHOW_DELETE_LIST = 'features/lists/SHOW_DELETE_LIST';
 const DELETE_LIST = 'features/lists/DELETE_LIST';
@@ -53,6 +56,13 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         lists: state.lists.push(action.listData), // TODO: create real list object
+        creatingList: false,
+      };
+    case UPDATE_LIST:
+      return {
+        ...state,
+        lists: updateListInLists(state.lists, action.listData), // TODO: create real list object
+        creatingList: false,
       };
     case ADD_ITEM:
       return {
@@ -62,7 +72,13 @@ export default function reducer(state = initialState, action = {}) {
     case SHOW_DELETE_LIST:
       return {
         ...state,
-        lists: setListUpForDelete(state.lists, action.listId, value),
+        lists: setListUpForDelete(state.lists, action.listId, action.value),
+      };
+    case DELETE_LIST:
+      return {
+        ...state,
+        lists: deleteListFromLists(state.lists, action.listId),
+        listId: undefined,
       };
     case SHOW_DELETE_ITEM:
       return {
@@ -108,6 +124,10 @@ export function showListForm(creatingList) {
 
 export function createList(listData) {
   return { type: CREATE_LIST, listData };
+}
+
+export function updateList(listData) {
+  return { type: UPDATE_LIST, listData };
 }
 
 export function addItem(listId, item) {

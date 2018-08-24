@@ -4,19 +4,26 @@ export const SETTINGS = {
   SITE_ROOT: '',
 };
 
-export const COLORS = {
-  BLACK: '#111111',
-  WHITE: '#FFFFFF',
-  RED: '#FF0033',
-  GREEN: '#33FF99',
-};
+export const COLORS = [
+  '#111111',
+  '#FF0033',
+  '#33FF99',
+];
 
 export const LABELS = {
   CREATE_NEW_LIST: '+ Create New List',
   DELETE: 'Delete',
+  EDIT: 'Edit',
   DELETE_X: 'X',
   RESET: 'Reset Checklist',
   ADD_ITEM: 'Add a new item',
+  ADD_ITEM_ICON: '+',
+  CONFIRM_DELETE: 'Are you sure?',
+  YES: 'Yes',
+  NO: 'No',
+  LIST_NAME: 'List Name',
+  LIST_COLOR: 'List Color',
+  MAKE_CHECKLIST: 'Make Checklist',
 };
 
 export const PROPS = {
@@ -39,56 +46,66 @@ export const LISTS = [
   {
     id: 'l0',
     title: 'List One',
-    color: COLORS.RED,
+    color: COLORS[0],
     isChecklist: false,
+    deleting: false,
     items: [
       {
         id: 'l0i0',
         title: 'Item Number One',
         done: false,
+        deleting: false,
       },
       {
         id: 'l0i1',
         title: 'Item Number Two',
         done: false,
+        deleting: false,
       },
       {
         id: 'l0i2',
         title: 'Item Number Three',
         done: false,
+        deleting: false,
       },
       {
         id: 'l0i3',
         title: 'Number Four',
         done: false,
+        deleting: false,
       },
     ],
   },
   {
     id: 'l1',
     title: 'List Two',
-    color: COLORS.GREEN,
+    color: COLORS[1],
     isChecklist: false,
+    deleting: false,
     items: [
       {
         id: 'l1i0',
         title: 'Item Number One',
         done: false,
+        deleting: false,
       },
       {
         id: 'l1i1',
         title: 'Item Number Two',
         done: false,
+        deleting: false,
       },
       {
         id: 'l1i2',
         title: 'Item Number Three',
         done: false,
+        deleting: false,
       },
       {
         id: 'l1i3',
         title: 'Number Four',
         done: false,
+        deleting: false,
       },
     ],
   },

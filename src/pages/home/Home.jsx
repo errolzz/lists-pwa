@@ -23,9 +23,11 @@ const Home = ({
         <div className="list-title-holder">
           { lists.map(list => (
             <ListTitle
+              key={list.id}
+              id={list.id}
               title={list.title}
               count={list.items.length}
-              click={() => showList(list.id)}
+              click={showList}
             />
           ))}
         </div>
@@ -37,8 +39,9 @@ const Home = ({
         </div>
       </div>
     }
-    { listId &&
-      <ConnectedList listData={lists.find(list => list.id === listId)} />
+
+    { listId && !creatingList &&
+      <ConnectedList />
     }
     { creatingList &&
       <ConnectedListForm updateData={lists.find(list => list.id === listId)} />

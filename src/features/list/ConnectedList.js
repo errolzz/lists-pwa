@@ -16,7 +16,8 @@ import List from './List';
 
 // maps the redux state to this components props
 const mapStateToProps = state => ({
-
+  listId: state.lists.listId,
+  lists: state.lists.lists,
 });
 
 // provide the component with the dispatch method
