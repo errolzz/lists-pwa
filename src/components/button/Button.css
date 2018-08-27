@@ -25,4 +25,9 @@ button, .button {
   &.confirm {
     color: var(--confirm-text);
   }
+
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
 }

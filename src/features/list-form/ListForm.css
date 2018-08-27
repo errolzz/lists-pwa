@@ -1,10 +1,13 @@
 @import '../../constants/constants.css';
 
 .list-form {
-
+  & .list-title {
+    margin-bottom: var(--plus-size);
+  }
   & .form-section {
     box-sizing: border-box;
-    padding: var(--plus-size);
+    padding: 0 var(--plus-size);
+    border-bottom: 2px solid var(--bg-fade);
   }
 
   & input {
@@ -13,8 +16,48 @@
 
   & .checkbox {
     width: auto;
+    margin-left: 0;
+
+    & .checkbox-dot {
+      margin-right: 12px;
+    }
+
     & span {
+      color: var(--black);
+    }
+  }
+
+  & .delete-list {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    border-top: 2px solid var(--bg-fade);
+    border-bottom: 0;
+    display: flex;
+    align-items: center;
+
+    & p {
+      width: 60%;
+      flex: 0 1 auto;
+    }
+
+    & .delete {
+      color: var(--black);
+      text-align: left; 
+    }
+
+    & .cancel-delete {
       color: var(--mid);
+      text-align: left;
+      flex: 0 1 auto;
+      width: 20%;
+    }
+
+    & .confirm-delete {
+      color: var(--black);
+      text-align: right;
+      flex: 0 1 auto;
+      width: 20%;
     }
   }
 
@@ -22,8 +65,10 @@
     display: flex;
     justify-content: space-between;
 
-    & button.confirm {
+    & .create-button {
       color: var(--mid);
+      text-align: right;
+      margin: var(--plus-size);
     }
   }
 }

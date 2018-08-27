@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../components/button/Button';
 import ListTitle from '../../components/list-title/ListTitle';
 import { LABELS, PROPS } from '../../constants/constants';
-import { getUniqueId } from '../../utils';
+import { getUniqueId, canBeReset } from '../../utils';
 import './List.css';
 
 
@@ -96,7 +96,7 @@ class List extends React.Component {
               </li>
             ))}
           </ul>
-          { currentList.isChecklist &&
+          { currentList.isChecklist && canBeReset(currentList) &&
             <Button
               label={LABELS.RESET}
               click={() => this.props.toggleAllItems(currentList.id, false)}

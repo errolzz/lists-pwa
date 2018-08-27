@@ -75,6 +75,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         lists: deleteListFromLists(state.lists, action.listId),
         listId: undefined,
+        creatingList: false,
       };
     case SHOW_DELETE_ITEM:
       return {

@@ -14,7 +14,7 @@ const ListTitle = ({
 }) => (
   <div className="list-title">
     <Button
-      label={`${title} ... ${count}`}
+      label={`${title}${count ? ' (' + count + ')' : ''}`}
       click={data => titleClick(data.id)}
       data={{ id }}
       classes="title-button"
@@ -33,9 +33,9 @@ const ListTitle = ({
 );
 
 ListTitle.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   title: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
   actionLabel: PropTypes.string,
   titleClick: PropTypes.func,
   actionClick: PropTypes.func,
@@ -43,6 +43,8 @@ ListTitle.propTypes = {
 };
 
 ListTitle.defaultProps = {
+  id: undefined,
+  count: undefined,
   actionLabel: undefined,
   titleClick: undefined,
   actionClick: undefined,

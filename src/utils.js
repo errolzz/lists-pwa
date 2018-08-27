@@ -1,3 +1,13 @@
+export function canBeReset(list) {
+  let canBe = false;
+  if (list.items.length > 0) {
+    list.items.forEach((item) => {
+      if (item.done) canBe = true;
+    });
+  }
+  return canBe;
+}
+
 export function resetListActions(lists) {
   const newLists = lists.slice();
   newLists.forEach((list) => {

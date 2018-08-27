@@ -13,8 +13,9 @@ export const COLORS = [
 export const LABELS = {
   CREATE_NEW_LIST: '+',
   DELETE: 'Delete',
-  DELETE_LIST: 'Delete List',
+  DELETE_LIST: 'Delete list',
   EDIT: 'Edit',
+  EDIT_NAME: 'Edit list name',
   DELETE_X: '+',
   RESET: 'Reset Checklist',
   ADD_ITEM: '',
@@ -22,11 +23,11 @@ export const LABELS = {
   CONFIRM_DELETE: 'Are you sure?',
   YES: 'Yes',
   NO: 'No',
-  LIST_NAME: 'List Name',
-  LIST_COLOR: 'List Color',
-  MAKE_CHECKLIST: 'Make Checklist',
-  APPLY_CHANGES: 'Apply Changes',
-  CREATE_LIST: 'Create List',
+  MAKE_NEW: 'Make a new list',
+  LIST_NAME: 'Enter list name',
+  MAKE_CHECKLIST: 'Set as checklist',
+  APPLY_CHANGES: 'Apply changes',
+  CREATE_LIST: 'Create list',
   CANCEL: 'Cancel',
 };
 
