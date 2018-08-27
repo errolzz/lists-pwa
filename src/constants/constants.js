@@ -17,7 +17,7 @@ export const LABELS = {
   EDIT: 'Edit',
   EDIT_NAME: 'Edit list name',
   DELETE_X: '+',
-  RESET: 'Reset Checklist',
+  RESET: 'Reset checklist',
   ADD_ITEM: '',
   ADD_ITEM_ICON: '+',
   CONFIRM_DELETE: 'Are you sure?',

@@ -1,4 +1,3 @@
-import { LISTS } from '../constants/constants';
 import {
   addItemToList,
   setItemUpForDelete,
@@ -26,13 +25,23 @@ const MOVE_ITEM = 'features/lists/MOVE_ITEM';
 const TOGGLE_ITEM = 'features/lists/TOGGLE_ITEM';
 const TOGGLE_ALL_ITEMS = 'features/lists/TOGGLE_ALL_ITEMS';
 
+let savedLists = [];
+try {
+  savedLists = localStorage.lists ? JSON.parse(localStorage.lists) : [];
+} catch (e) {}
+
 // initial state
 const initialState = {
-  lists: LISTS, // TODO: set up localStorage
+  lists: savedLists,
   listId: undefined,
   isLoading: false,
   creatingList: false,
 };
+
+function save(newLists) {
+  localStorage.lists = JSON.stringify(newLists.slice());
+  return newLists;
+}
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
@@ -45,7 +54,7 @@ export default function reducer(state = initialState, action = {}) {
     case CLOSE_LIST:
       return {
         ...state,
-        lists: resetListActions(state.lists),
+        lists: save(resetListActions(state.lists)),
         listId: undefined,
       };
     case SHOW_LIST_FORM:
@@ -56,51 +65,51 @@ export default function reducer(state = initialState, action = {}) {
     case CREATE_LIST:
       return {
         ...state,
-        lists: createNewList(state.lists, action.listData),
+        lists: save(createNewList(state.lists, action.listData)),
         creatingList: false,
       };
     case UPDATE_LIST:
       return {
         ...state,
-        lists: updateListInLists(state.lists, action.listData),
+        lists: save(updateListInLists(state.lists, action.listData)),
         creatingList: false,
       };
     case ADD_ITEM:
       return {
         ...state,
-        lists: addItemToList(state.lists, action.listId, action.item),
+        lists: save(addItemToList(state.lists, action.listId, action.item)),
       };
     case DELETE_LIST:
       return {
         ...state,
-        lists: deleteListFromLists(state.lists, action.listId),
+        lists: save(deleteListFromLists(state.lists, action.listId)),
         listId: undefined,
         creatingList: false,
       };
     case SHOW_DELETE_ITEM:
       return {
         ...state,
-        lists: setItemUpForDelete(state.lists, action.listId, action.itemId),
+        lists: save(setItemUpForDelete(state.lists, action.listId, action.itemId)),
       };
     case DELETE_ITEM:
       return {
         ...state,
-        lists: deleteItemFromList(state.lists, action.listId, action.itemId),
+        lists: save(deleteItemFromList(state.lists, action.listId, action.itemId)),
       };
     case MOVE_ITEM:
       return {
         ...state,
-        lists: moveItemInList(state.lists, action.listId, action.oldIndex, action.newIndex),
+        lists: save(moveItemInList(state.lists, action.listId, action.oldIndex, action.newIndex)),
       };
     case TOGGLE_ITEM:
       return {
         ...state,
-        lists: toggleItemInList(state.lists, action.listId, action.itemId),
+        lists: save(toggleItemInList(state.lists, action.listId, action.itemId)),
       };
     case TOGGLE_ALL_ITEMS:
       return {
         ...state,
-        lists: toggleAllItemsInList(state.lists, action.listId, action.value),
+        lists: save(toggleAllItemsInList(state.lists, action.listId, action.value)),
       };
     default: return state;
   }

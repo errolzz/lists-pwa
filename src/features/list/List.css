@@ -1,9 +1,16 @@
 @import '../../constants/constants.css';
 
 .list {
+  & .list-title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
   & .list-scroller {
     position: fixed;
     width: 100%;
+    top: 60px;
     height: calc(100% - 180px);
     overflow-y: scroll;
 
@@ -88,7 +95,7 @@
       & span {
         transition: transform 0.3s, color 0.3s, top 0.3s;
         position: relative;
-        top: 3px;
+        top: 4px;
         left: 7px;
         color: var(--bg-fade);
         font-size: var(--plus-size);
@@ -98,7 +105,7 @@
         pointer-events: auto;
         & span {
           transform: rotate(45deg);
-          top: 3px;
+          top: 4px;
           color: var(--mid);
         }
       }
@@ -119,11 +126,10 @@
   }
 
   & .reset-list {
-    color: var(--mid);
     text-align: left;
     padding-left: var(--plus-size);
     margin-top: var(--plus-size);
-    color: var(--mid);
+    color: var(--delete);
   }
 
   & .list-controls {
