@@ -21,12 +21,11 @@ class List extends React.Component {
     this.state = {
       movingItem: undefined,
       movingIndex: undefined,
-      dropSpot: undefined,
       newItemText: '',
     };
   }
 
-  getItemClasses(currentList, item, index) {
+  getItemClasses(currentList, item) {
     let classes = 'list-item';
     if (currentList.isChecklist) classes += ' with-check';
     if (this.state.movingItem === item.id) classes += ' moving';
@@ -71,14 +70,13 @@ class List extends React.Component {
         movingItem: itemId,
         movingIndex: itemIndex,
       });
-    }, 300);
+    }, 666);
   }
 
   itemRelease(index) {
     clearTimeout(this.pressTimer);
 
     if (!this.state.moveItemSelected && this.state.movingItem) {
-      console.log(`MOVING ITEM from ${this.state.movingIndex} to ${index}` )
       this.props.moveItem(this.props.listId, this.state.movingIndex, index);
       this.setState({
         movingItem: undefined,
@@ -87,7 +85,6 @@ class List extends React.Component {
     }
 
     if (this.state.moveItemSelected) {
-      console.log('ITEM READY')
       this.setState({
         moveItemSelected: false,
       });
