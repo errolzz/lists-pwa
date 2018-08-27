@@ -14,6 +14,13 @@
     height: calc(100% - 180px);
     overflow-y: scroll;
 
+    & .moving-item {
+      & .remove-item, & .checkbox {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
     & .list-item {
       min-height: 50px;
       width: 100%;
@@ -22,12 +29,36 @@
       position: relative;
       overflow: hidden;
 
+      &.moving {
+        background: var(--mid);
+
+        & .item-title {
+          color: var(--white);
+        }
+
+        & .remove-item, & .checkbox {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+
+      &.drop-spot {
+        border-bottom: 2px solid var(--mid);
+      }
+
       & .item-title {
+        text-align: left;
+        height: 50px;
         flex: 1 1 auto;
         color: var(--mid);
         padding: 16px var(--plus-size);
         box-sizing: border-box;
         transform: translateY(2px);
+
+        & span {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+        }
       }
 
       & .remove-item {
@@ -40,6 +71,8 @@
           transform: rotate(45deg) translateX(2px);
           color: var(--bg-fade);
           font-size: var(--plus-size);
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
         }
       }
 

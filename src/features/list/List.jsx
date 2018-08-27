@@ -16,9 +16,21 @@ class List extends React.Component {
     this.addNewItem = this.addNewItem.bind(this);
     this.editList = this.editList.bind(this);
     this.keyUp = this.keyUp.bind(this);
+    this.itemPress = this.itemPress.bind(this);
+    this.itemRelease = this.itemRelease.bind(this);
     this.state = {
+      movingItem: undefined,
+      movingIndex: undefined,
+      dropSpot: undefined,
       newItemText: '',
     };
+  }
+
+  getItemClasses(currentList, item, index) {
+    let classes = 'list-item';
+    if (currentList.isChecklist) classes += ' with-check';
+    if (this.state.movingItem === item.id) classes += ' moving';
+    return classes;
   }
 
   newItemChange() {
@@ -52,6 +64,36 @@ class List extends React.Component {
     this.props.showListForm(true);
   }
 
+  itemPress(itemId, itemIndex) {
+    this.pressTimer = setTimeout(() => {
+      this.setState({
+        moveItemSelected: true,
+        movingItem: itemId,
+        movingIndex: itemIndex,
+      });
+    }, 300);
+  }
+
+  itemRelease(index) {
+    clearTimeout(this.pressTimer);
+
+    if (!this.state.moveItemSelected && this.state.movingItem) {
+      console.log(`MOVING ITEM from ${this.state.movingIndex} to ${index}` )
+      this.props.moveItem(this.props.listId, this.state.movingIndex, index);
+      this.setState({
+        movingItem: undefined,
+        movingIndex: undefined,
+      });
+    }
+
+    if (this.state.moveItemSelected) {
+      console.log('ITEM READY')
+      this.setState({
+        moveItemSelected: false,
+      });
+    }
+  }
+
   render() {
     const currentList = this.props.lists.find(list => list.id === this.props.listId);
     return (
@@ -65,9 +107,12 @@ class List extends React.Component {
           actionClick={this.editList}
         />
         <div className="list-scroller">
-          <ul>
-            { currentList.items.map(item => (
-              <li key={item.id} className={`list-item${currentList.isChecklist ? ' with-check' : ''}`}>
+          <ul className={this.state.movingItem ? 'moving-item' : ''}>
+            { currentList.items.map((item, index) => (
+              <li
+                key={item.id}
+                className={this.getItemClasses(currentList, item, index)}
+              >
                 { currentList.isChecklist &&
                   <button
                     className={`checkbox${item.done ? ' checked' : ''}`}
@@ -76,7 +121,14 @@ class List extends React.Component {
                     <div className="checkbox-dot" />
                   </button>
                 }
-                <div className="item-title">{item.title}</div>
+                <button
+                  className="item-title"
+                  type="button"
+                  onTouchStart={() => this.itemPress(item.id, index)}
+                  onTouchEnd={() => this.itemRelease(index)}
+                >
+                  <span>{item.title}</span>
+                </button>
                 <Button
                   label={LABELS.DELETE_X}
                   classes="remove-item"
@@ -140,6 +192,7 @@ List.propTypes = {
   showListForm: PropTypes.func.isRequired,
   showDeleteItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
+  moveItem: PropTypes.func.isRequired,
   toggleItem: PropTypes.func.isRequired,
   toggleAllItems: PropTypes.func.isRequired,
   closeList: PropTypes.func.isRequired,

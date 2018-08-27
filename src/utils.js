@@ -55,7 +55,7 @@ export function deleteItemFromList(lists, listId, itemId) {
   return newLists;
 }
 
-export function moveItemInList(lists, listId, itemId, oldIndex, newIndex) {
+export function moveItemInList(lists, listId, oldIndex, newIndex) {
   const newLists = lists.slice();
   const listToMoveAround = newLists.find(list => list.id === listId);
   while (oldIndex < 0) {
