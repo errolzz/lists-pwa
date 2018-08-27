@@ -14,6 +14,7 @@ class List extends React.Component {
     this.newItemChange = this.newItemChange.bind(this);
     this.clearAddItem = this.clearAddItem.bind(this);
     this.addNewItem = this.addNewItem.bind(this);
+    this.editList = this.editList.bind(this);
     this.state = {
       newItemText: '',
     };
@@ -42,6 +43,10 @@ class List extends React.Component {
     this.clearAddItem();
   }
 
+  editList() {
+    this.props.showListForm(true);
+  }
+
   render() {
     const currentList = this.props.lists.find(list => list.id === this.props.listId);
     return (
@@ -50,7 +55,9 @@ class List extends React.Component {
           id={currentList.id}
           title={currentList.title}
           count={currentList.items.length}
-          click={this.props.closeList}
+          titleClick={this.props.closeList}
+          actionLabel={LABELS.EDIT}
+          actionClick={this.editList}
         />
         <div className="list-scroller">
           <ul>
@@ -59,7 +66,7 @@ class List extends React.Component {
                 { currentList.isChecklist &&
                   <button
                     className={`checkbox${item.done ? ' checked' : ''}`}
-                    onClick={() => this.props.toggleItem(currentList.id, item.id)}
+                    onTouchStart={() => this.props.toggleItem(currentList.id, item.id)}
                   >
                     <div className="checkbox-dot" />
                   </button>
@@ -75,14 +82,14 @@ class List extends React.Component {
                 { item.deleting &&
                   <div className="confirm-delete">
                     <Button
-                      label={LABELS.CANCEL}
-                      classes="cancel"
-                      click={() => this.props.showDeleteItem(currentList.id, item.id)}
-                    />
-                    <Button
                       label={LABELS.DELETE}
                       classes="confirm"
                       click={() => this.props.deleteItem(currentList.id, item.id)}
+                    />
+                    <Button
+                      label={LABELS.CANCEL}
+                      classes="cancel"
+                      click={() => this.props.showDeleteItem(currentList.id, item.id)}
                     />
                   </div>
                 }
@@ -93,6 +100,7 @@ class List extends React.Component {
             <Button
               label={LABELS.RESET}
               click={() => this.props.toggleAllItems(currentList.id, false)}
+              classes="reset-list"
             />
           }
         </div>
@@ -100,6 +108,7 @@ class List extends React.Component {
           <input
             type="text"
             placeholder={LABELS.ADD_ITEM}
+            autoComplete="off"
             ref={this.newItemField}
             onChange={this.newItemChange}
             value={this.state.newItemText}
@@ -109,40 +118,14 @@ class List extends React.Component {
             click={this.clearAddItem}
             classes={`clear-add-item${this.state.newItemText.length > 0 ? ' clear' : ''}`}
           />
-          <Button
-            label={LABELS.ADD_ITEM_ICON}
-            click={this.addNewItem}
-            classes="confirm-add-item"
-            disabled={this.state.newItemText.length === 0}
-          />
+          { this.state.newItemText.length > 0 &&
+            <Button
+              label={LABELS.ADD_ITEM_ICON}
+              click={this.addNewItem}
+              classes="confirm-add-item"
+            />
+          }
         </div>
-        { !currentList.deleting &&
-          <div className="list-controls">
-            <Button
-              label={LABELS.DELETE_LIST}
-              click={() => this.props.showDeleteList(currentList.id, true)}
-              classes="delete"
-            />
-            <Button
-              label={LABELS.EDIT}
-              click={() => this.props.showListForm(true)}
-            />
-          </div>
-        }
-        { currentList.deleting &&
-          <div className="list-controls">
-            <span>{LABELS.CONFIRM_DELETE}</span>
-            <Button
-              label={LABELS.NO}
-              click={() => this.props.showDeleteList(currentList.id, false)}
-            />
-            <Button
-              label={LABELS.YES}
-              click={() => this.props.deleteList(currentList.id)}
-              classes="delete"
-            />
-          </div>
-        }
       </div>
     );
   }
@@ -153,8 +136,6 @@ List.propTypes = {
   listId: PropTypes.string.isRequired,
   addItem: PropTypes.func.isRequired,
   showListForm: PropTypes.func.isRequired,
-  showDeleteList: PropTypes.func.isRequired,
-  deleteList: PropTypes.func.isRequired,
   showDeleteItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
   toggleItem: PropTypes.func.isRequired,

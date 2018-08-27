@@ -6,7 +6,6 @@ import {
   moveItem,
   showDeleteItem,
   showListForm,
-  showDeleteList,
   deleteList,
   deleteItem,
   toggleItem,
@@ -24,7 +23,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   closeList: bindActionCreators(closeList, dispatch),
   showListForm: bindActionCreators(showListForm, dispatch),
-  showDeleteList: bindActionCreators(showDeleteList, dispatch),
   deleteList: bindActionCreators(deleteList, dispatch),
   showDeleteItem: bindActionCreators(showDeleteItem, dispatch),
   deleteItem: bindActionCreators(deleteItem, dispatch),

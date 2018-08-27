@@ -1,0 +1,22 @@
+{
+  "short_name": "Lists",
+  "name": "Lists",
+  "icons": [
+    {
+      "src": "/lists-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/lists-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/lists",
+  "background_color": "#FCE38A",
+  "display": "standalone",
+  "scope": "/lists",
+  "orientation": "portrait",
+  "theme_color": "#F38181"
+}

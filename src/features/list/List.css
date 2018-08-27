@@ -8,26 +8,25 @@
     overflow-y: scroll;
 
     & .list-item {
-      min-height: 60px;
+      min-height: 50px;
       width: 100%;
       display: flex;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
 
-      & .checkbox {
-        width: 60px;
-      }
-
       & .item-title {
         flex: 1 1 auto;
-        color: var(--mid);
-        padding: 22px;
+        color: var(--black);
+        padding: 16px var(--plus-size);
         box-sizing: border-box;
       }
 
       & .remove-item {
         width: 60px;
+        min-height: 50px;
+        height: auto;
+        flex: 0 0 auto;
 
         & span {
           transform: rotate(45deg) translateX(2px);
@@ -51,16 +50,21 @@
       }
 
       &.with-check {
-        
+        & .item-title {
+          padding: 16px 0px;
+        }
       }
     }
   }
+
   & .add-item-field {
     width: 100%;
     height: 60px;
     position: fixed;
     left: 0;
-    bottom: 60px;
+    bottom: 0px;
+    box-sizing: border-box;
+    border-top: 2px solid var(--bg-fade);
 
     & input {
       width: 100%;
@@ -68,15 +72,18 @@
     }
 
     & .clear-add-item {
-      width: 30px;
+      width: 40px;
       position: absolute;
-      top: 2px;
-      left: 12px;
+      top: 0px;
+      left: 0px;
       pointer-events: none;
 
       & span {
-        transition: transform 0.3s, color 0.3s;
-        color: var(--mid);
+        transition: transform 0.3s, color 0.3s, top 0.3s;
+        position: relative;
+        top: 3px;
+        left: 7px;
+        color: var(--bg-fade);
         font-size: var(--plus-size);
       }
 
@@ -84,7 +91,8 @@
         pointer-events: auto;
         & span {
           transform: rotate(45deg);
-          color: var(--cancel-text);
+          top: 3px;
+          color: var(--mid);
         }
       }
     }
@@ -92,14 +100,24 @@
     & .confirm-add-item {
       width: 60px;
       position: absolute;
-      top: 2px;
+      top: 5px;
       right: 0px;
-      & span {
-        color: var(--mid);
-        font-size: var(--plus-size);
+      color: var(--mid);
+      font-size: var(--plus-size);
+      
+      &:disabled {
+        color: var(--bg-fade);
       }
     }
   }
+
+  & .reset-list {
+    color: var(--black);
+    text-align: left;
+    padding-left: 22px;
+    color: var(--mid);
+  }
+
   & .list-controls {
     height: 60px;
     position: fixed;
@@ -109,6 +127,15 @@
     width: 100%;
 
     & button {
+      box-sizing: border-box;
+      &.delete {
+        text-align: left;
+        padding-left: var(--plus-size);
+      }
+      &.edit {
+        text-align: right;
+        padding-right: var(--plus-size);
+      }
       & span {
         color: var(--mid);
       }

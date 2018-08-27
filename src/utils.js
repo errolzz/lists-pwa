@@ -24,13 +24,6 @@ export function setItemUpForDelete(lists, listId, itemId) {
   return newLists;
 }
 
-export function setListUpForDelete(lists, listId, value) {
-  const newLists = lists.slice();
-  const listToDelete = newLists.find(list => list.id === listId);
-  listToDelete.deleting = value;
-  return newLists;
-}
-
 export function deleteListFromLists(lists, listId) {
   const newLists = lists.slice();
   newLists.forEach((list, index) => {

@@ -28,7 +28,7 @@ const Home = ({
               id={list.id}
               title={list.title}
               count={list.items.length}
-              click={showList}
+              titleClick={showList}
             />
           ))}
         </div>

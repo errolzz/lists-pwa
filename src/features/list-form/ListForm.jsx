@@ -12,10 +12,12 @@ class ListForm extends React.Component {
     this.listNameField = React.createRef();
     this.listNameChange = this.listNameChange.bind(this);
     this.submitList = this.submitList.bind(this);
+    this.confirmDeleteList = this.confirmDeleteList.bind(this);
     this.currentList = this.props.lists.find(list => list.id === this.props.listId);
     this.state = {
       listNameText: this.currentList ? this.currentList.title : '',
       checklist: this.currentList ? this.currentList.isChecklist : false,
+      deleting: false,
     };
   }
 
@@ -28,7 +30,7 @@ class ListForm extends React.Component {
   submitList() {
     if (this.currentList) {
       this.props.updateList({
-        id: this.currentList.id,
+        id: this.props.listId,
         title: this.state.listNameText,
         color: this.state.color,
         isChecklist: this.state.checklist,
@@ -39,10 +41,16 @@ class ListForm extends React.Component {
         title: this.state.listNameText,
         color: this.state.color,
         isChecklist: this.state.checklist,
-        deleting: false,
         items: [],
       });
     }
+  }
+
+  confirmDeleteList() {
+    this.props.deleteList(this.props.listId);
+    this.setState({
+      deleting: false,
+    });
   }
 
   render() {
@@ -50,10 +58,12 @@ class ListForm extends React.Component {
       <div className="list-form">
         { this.currentList &&
           <ListTitle
-            id={this.currentList.id}
+            id={this.props.listId}
             title={this.currentList.title}
             count={this.currentList.items.length}
-            click={() => this.props.showListForm(false)}
+            titleClick={() => this.props.showListForm(false)}
+            actionLabel={LABELS.CANCEL}
+            actionClick={() => this.props.showListForm(false)}
           />
         }
         <div className="form-section">
@@ -65,23 +75,38 @@ class ListForm extends React.Component {
             value={this.state.listNameText}
           />
         </div>
-        {/*<div className="form-section">
-          <p>{LABELS.LIST_COLOR}</p>
-          <div className="swatches">
-            { COLORS.map(color => (
-              <div className="color" style={{ background: color }} key={color} />
-            ))}
-          </div>
-        </div>*/}
         <div className="form-section">
           <button
             className={`checkbox${this.state.checklist ? ' checked' : ''}`}
-            onClick={() => this.setState({ checklist: !this.state.checklist })}
+            onTouchStart={() => this.setState({ checklist: !this.state.checklist })}
           >
             <div className="checkbox-dot" />
             <span>{LABELS.MAKE_CHECKLIST}</span>
           </button>
         </div>
+        { !this.state.deleting &&
+          <div className="list-controls">
+            <Button
+              label={LABELS.DELETE_LIST}
+              click={() => this.setState({ deleting: true })}
+              classes="delete"
+            />
+          </div>
+        }
+        { this.state.deleting &&
+          <div className="list-controls">
+            <span>{LABELS.CONFIRM_DELETE}</span>
+            <Button
+              label={LABELS.NO}
+              click={this.confirmDeleteList}
+            />
+            <Button
+              label={LABELS.YES}
+              click={() => this.props.deleteList(this.props.listId)}
+              classes="delete"
+            />
+          </div>
+        }
         <div className="form-footer">
           <Button
             label={LABELS.CANCEL}
@@ -105,6 +130,7 @@ ListForm.propTypes = {
   showListForm: PropTypes.func.isRequired,
   createList: PropTypes.func.isRequired,
   updateList: PropTypes.func.isRequired,
+  deleteList: PropTypes.func.isRequired,
   listId: PropTypes.string,
 };
 

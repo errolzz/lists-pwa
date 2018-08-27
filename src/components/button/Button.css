@@ -3,7 +3,7 @@
 button, .button {
   border: 0;
   outline: 0;
-  height: 60px;
+  height: 58px;
   text-align: center;
   background: transparent;
   color: var(--main-text);
@@ -24,9 +24,5 @@ button, .button {
 
   &.confirm {
     color: var(--confirm-text);
-  }
-
-  &:disabled {
-    opacity: 0.4;
   }
 }

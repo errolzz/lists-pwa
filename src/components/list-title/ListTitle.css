@@ -6,11 +6,20 @@
   text-align: left;
   border-bottom: 2px solid var(--fore);
   display: block;
-  height: 60px;
+  min-height: 60px;
+  padding: 0 var(--plus-size);
   box-sizing: border-box;
-  padding: 22px;
   display: flex;
   justify-content: space-between;
+
+  & .title-button {
+    text-align: left;
+  }
+
+  & .action-button {
+    text-align: right;
+    max-width: 60px;
+  }
 
   & span {
     display: block;

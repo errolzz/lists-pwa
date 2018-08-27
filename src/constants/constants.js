@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const SETTINGS = {
-  SITE_ROOT: '',
+  SITE_ROOT: '/lists',
 };
 
 export const COLORS = [
@@ -11,13 +11,13 @@ export const COLORS = [
 ];
 
 export const LABELS = {
-  CREATE_NEW_LIST: '+ New List',
+  CREATE_NEW_LIST: '+',
   DELETE: 'Delete',
   DELETE_LIST: 'Delete List',
   EDIT: 'Edit',
   DELETE_X: '+',
   RESET: 'Reset Checklist',
-  ADD_ITEM: 'Add a new item',
+  ADD_ITEM: '',
   ADD_ITEM_ICON: '+',
   CONFIRM_DELETE: 'Are you sure?',
   YES: 'Yes',
@@ -82,7 +82,7 @@ export const LISTS = [
   },
   {
     id: 'l1',
-    title: 'List Two',
+    title: 'God Who Loves Himself!!',
     color: COLORS[1],
     isChecklist: false,
     deleting: false,

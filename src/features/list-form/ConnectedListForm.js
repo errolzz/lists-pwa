@@ -4,6 +4,7 @@ import {
   showListForm,
   createList,
   updateList,
+  deleteList,
 } from '../../redux/lists';
 import ListForm from './ListForm';
 
@@ -18,6 +19,7 @@ const mapDispatchToProps = dispatch => ({
   showListForm: bindActionCreators(showListForm, dispatch),
   createList: bindActionCreators(createList, dispatch),
   updateList: bindActionCreators(updateList, dispatch),
+  deleteList: bindActionCreators(deleteList, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListForm);

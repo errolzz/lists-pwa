@@ -3,7 +3,7 @@
 .home {
   & .create-list {
     & button {
-      color: var(--mid);
+      color: var(--black);
     }
   }
 }
