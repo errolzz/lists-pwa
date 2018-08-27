@@ -1,16 +1,18 @@
-# React + Redux Starter
+# Lists
 
-A starter kit for a site using:
+A checklist app to replace the iOS reminders app. (which I never use for actual reminders). 
 
-- Webpack 4  
-- React  
-- Redux  
-- Redux Thunk
-- React Redux Router
-- React Helmet
-- PostCSS Preset Env
-- AirBnB ESLint  
-  
+### Features
+- Create lists
+- Toggle them betwee running lists and checklists
+- Reset checklists to use repeatedly
+
+
+### Notes
+Only uses local storage for data! Careful not to delete.  
+Meant to be run as a progressive web app on iOS.  
+Does not make any server calls beyon initial page load.  
+
 
 ### Requirements:
 - Node 8.9.4+  
@@ -44,18 +46,6 @@ npm run dist
 ```  
 
 
-### Linting
-This starter encourages using the eslint AirBnB linter.  
-See how to install and configure it here:  
-https://www.npmjs.com/package/eslint-config-airbnb-bundle
-
-- two space indent
-- single quote strings
-- trailing commas
-- semicolons
-- many other bug-reducing rules
-
-
 ### Folder Structure
 __assets__   
 > Contains all static assets. Create folders for fonts, images, etc, in here.  
@@ -80,16 +70,6 @@ __pages__
 This repo uses a PostCSS preset environment.  
 Read about it here: https://github.com/csstools/postcss-preset-env.  
 
-
-### Internationalization
-This repo does not include internationalization features by default.  
-The recommended package to handle locale string swapping and formatting is react-intl.  
-Full documentation here: https://github.com/yahoo/react-intl/wiki  
-
-
-### Routing
-The server must be able to handle push state urls like localhost:8080/user/bob_ross and serve up the index page from any route.  
-This repo provides a basic htaccess file that will allow this.  
 
 
 
