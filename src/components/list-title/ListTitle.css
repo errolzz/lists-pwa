@@ -14,15 +14,16 @@
 
   & .title-button {
     text-align: left;
+    color: var(--white)
   }
 
   & .action-button {
     text-align: right;
     max-width: 60px;
+    color: var(--cancel-text);
   }
 
   & span {
     display: block;
-    color: var(--main-text)
   }
 }

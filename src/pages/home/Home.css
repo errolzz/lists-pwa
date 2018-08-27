@@ -2,8 +2,9 @@
 
 .home {
   & .create-list {
+    margin-top: var(--plus-size);
     & button {
-      color: var(--black);
+      color: var(--mid);
     }
   }
 }

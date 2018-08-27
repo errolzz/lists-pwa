@@ -76,9 +76,6 @@ class ListForm extends React.Component {
           />
         }
         <div className="form-section">
-          { this.currentList &&
-            <p>{LABELS.EDIT_NAME}</p>
-          }
           <input
             type="text"
             placeholder={LABELS.LIST_NAME}
@@ -96,40 +93,36 @@ class ListForm extends React.Component {
             <span>{LABELS.MAKE_CHECKLIST}</span>
           </button>
         </div>
-        <div className="form-footer">
-          <Button
-            label={this.currentList ? LABELS.APPLY_CHANGES : LABELS.CREATE_LIST}
-            classes="create-button"
-            click={this.submitList}
-            disabled={this.state.listNameText.length === 0}
-          />
-        </div>
-        { this.currentList &&
-          <div>
-            { !this.state.deleting &&
-              <div className="form-section delete-list">
-                <Button
-                  label={LABELS.DELETE_LIST}
-                  click={() => this.setState({ deleting: true })}
-                  classes="delete"
-                />
-              </div>
+        { !this.state.deleting &&
+          <div className="form-section delete-list">
+            { this.currentList &&
+              <Button
+                label={LABELS.DELETE_LIST}
+                click={() => this.setState({ deleting: true })}
+                classes="delete"
+              />
             }
-            { this.state.deleting &&
-              <div className="form-section delete-list">
-                <p>{LABELS.CONFIRM_DELETE}</p>
-                <Button
-                  label={LABELS.NO}
-                  click={this.confirmDeleteList}
-                  classes="cancel-delete"
-                />
-                <Button
-                  label={LABELS.YES}
-                  click={() => this.props.deleteList(this.props.listId)}
-                  classes="confirm-delete"
-                />
-              </div>
-            }
+            <Button
+              label={this.currentList ? LABELS.APPLY_CHANGES : LABELS.CREATE_LIST}
+              classes="create-button"
+              click={this.submitList}
+              disabled={this.state.listNameText.length === 0}
+            />
+          </div>
+        }
+        { this.state.deleting &&
+          <div className="form-section delete-list deleting">
+            <p>{LABELS.CONFIRM_DELETE}</p>
+            <Button
+              label={LABELS.YES}
+              click={() => this.props.deleteList(this.props.listId)}
+              classes="confirm-delete"
+            />
+            <Button
+              label={LABELS.NO}
+              click={() => this.setState({ deleting: false })}
+              classes="cancel-delete"
+            />
           </div>
         }
       </div>

@@ -23,7 +23,7 @@ button, .button {
   }
 
   &.confirm {
-    color: var(--confirm-text);
+    color: var(--delete);
   }
 
   &:disabled {

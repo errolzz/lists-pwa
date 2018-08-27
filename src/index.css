@@ -64,7 +64,7 @@ input {
   margin-left: 8px;
 
   & .checkbox-dot {
-    border: 2px solid var(--black);
+    border: 2px solid var(--mid);
     width: 12px;
     height: 12px;
     border-radius: 6px;
@@ -74,7 +74,7 @@ input {
 
   &.checked {
     & .checkbox-dot {
-      background: var(--black);
+      background: var(--mid);
     }
   }
 }

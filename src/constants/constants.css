@@ -1,11 +1,12 @@
 :root {
-  --black: #222;
+  --white: #fff;
   --bg: #FCE38A;
   --bg-fade: #E9C031;
-  --mid: #F38181;
+  --mid: #333;
   --fore: #FCE38A;
   --main-text: #FCE38A;
-  --cancel-text: #E05555;
+  --cancel-text: #777;
   --confirm-text: #FCE38A;
+  --delete: #FF5A5A;
   --plus-size: 22px;
 }

@@ -15,6 +15,7 @@ class List extends React.Component {
     this.clearAddItem = this.clearAddItem.bind(this);
     this.addNewItem = this.addNewItem.bind(this);
     this.editList = this.editList.bind(this);
+    this.keyUp = this.keyUp.bind(this);
     this.state = {
       newItemText: '',
     };
@@ -24,6 +25,10 @@ class List extends React.Component {
     this.setState({
       newItemText: this.newItemField.current.value,
     });
+  }
+
+  keyUp(e) {
+    if (e.keyCode === 13) this.addNewItem();
   }
 
   clearAddItem() {
@@ -72,27 +77,23 @@ class List extends React.Component {
                   </button>
                 }
                 <div className="item-title">{item.title}</div>
-                { !item.deleting &&
+                <Button
+                  label={LABELS.DELETE_X}
+                  classes="remove-item"
+                  click={() => this.props.showDeleteItem(currentList.id, item.id)}
+                />
+                <div className={`confirm-delete${item.deleting ? ' deleting' : ''}`}>
                   <Button
-                    label={LABELS.DELETE_X}
-                    classes="remove-item"
+                    label={LABELS.DELETE}
+                    classes="confirm"
+                    click={() => this.props.deleteItem(currentList.id, item.id)}
+                  />
+                  <Button
+                    label={LABELS.CANCEL}
+                    classes="cancel"
                     click={() => this.props.showDeleteItem(currentList.id, item.id)}
                   />
-                }
-                { item.deleting &&
-                  <div className="confirm-delete">
-                    <Button
-                      label={LABELS.DELETE}
-                      classes="confirm"
-                      click={() => this.props.deleteItem(currentList.id, item.id)}
-                    />
-                    <Button
-                      label={LABELS.CANCEL}
-                      classes="cancel"
-                      click={() => this.props.showDeleteItem(currentList.id, item.id)}
-                    />
-                  </div>
-                }
+                </div>
               </li>
             ))}
           </ul>
@@ -111,6 +112,7 @@ class List extends React.Component {
             autoComplete="off"
             ref={this.newItemField}
             onChange={this.newItemChange}
+            onKeyUp={this.keyUp}
             value={this.state.newItemText}
           />
           <Button

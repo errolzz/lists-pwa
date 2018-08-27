@@ -17,7 +17,7 @@
 
       & .item-title {
         flex: 1 1 auto;
-        color: var(--black);
+        color: var(--mid);
         padding: 16px var(--plus-size);
         box-sizing: border-box;
       }
@@ -36,6 +36,7 @@
       }
 
       & .confirm-delete {
+        width: 0;
         display: flex;
         background: var(--mid);
         height: 60px;
@@ -43,9 +44,15 @@
         position: absolute;
         right: 0;
         top: 0;
+        transition: width 0.3s;
 
         & button {
+          height: 50px;
           margin: 0 14px;
+        }
+
+        &.deleting {
+          width: 50%;
         }
       }
 
@@ -112,9 +119,10 @@
   }
 
   & .reset-list {
-    color: var(--black);
+    color: var(--mid);
     text-align: left;
-    padding-left: 22px;
+    padding-left: var(--plus-size);
+    margin-top: var(--plus-size);
     color: var(--mid);
   }
 

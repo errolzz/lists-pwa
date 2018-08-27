@@ -1,6 +1,9 @@
 @import '../../constants/constants.css';
 
 .list-form {
+  & p {
+    color: var(--mid);
+  }
   & .list-title {
     margin-bottom: var(--plus-size);
   }
@@ -23,7 +26,7 @@
     }
 
     & span {
-      color: var(--black);
+      color: var(--mid);
     }
   }
 
@@ -36,39 +39,40 @@
     display: flex;
     align-items: center;
 
+    &.deleting {
+      background: var(--mid);
+      & p {
+        color: var(--white);
+      }
+    }
+
     & p {
       width: 60%;
       flex: 0 1 auto;
     }
 
     & .delete {
-      color: var(--black);
+      color: var(--delete);
       text-align: left; 
     }
 
     & .cancel-delete {
-      color: var(--mid);
-      text-align: left;
+      color: var(--cancel-text);
+      text-align: right;
       flex: 0 1 auto;
       width: 20%;
     }
 
     & .confirm-delete {
-      color: var(--black);
-      text-align: right;
+      color: var(--delete);
+      text-align: left;
       flex: 0 1 auto;
       width: 20%;
     }
   }
 
-  & .form-footer {
-    display: flex;
-    justify-content: space-between;
-
-    & .create-button {
-      color: var(--mid);
-      text-align: right;
-      margin: var(--plus-size);
-    }
+  & .create-button {
+    color: var(--mid);
+    text-align: right;
   }
 }

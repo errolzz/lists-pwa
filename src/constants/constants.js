@@ -83,7 +83,7 @@ export const LISTS = [
   },
   {
     id: 'l1',
-    title: 'God Who Loves Himself!!',
+    title: 'God Loves Himself!',
     color: COLORS[1],
     isChecklist: false,
     deleting: false,
