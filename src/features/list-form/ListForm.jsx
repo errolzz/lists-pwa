@@ -105,7 +105,7 @@ class ListForm extends React.Component {
             <Button
               label={this.currentList ? LABELS.APPLY_CHANGES : LABELS.CREATE_LIST}
               classes="create-button"
-              click={this.submitList}
+              click={() => setTimeout(this.submitList, 200)}
               disabled={this.state.listNameText.length === 0}
             />
           </div>

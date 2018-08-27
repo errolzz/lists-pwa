@@ -53,7 +53,6 @@
         color: var(--mid);
         padding: 16px var(--plus-size);
         box-sizing: border-box;
-        transform: translateY(2px);
 
         & span {
           -webkit-touch-callout: none;
