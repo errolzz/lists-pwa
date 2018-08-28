@@ -23,7 +23,20 @@
     color: var(--cancel-text);
   }
 
+  & .move-button {
+    text-align: right;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
   & span {
     display: block;
+  }
+
+  &.being-moved {
+    background: var(--white);
+    & .title-button {
+      color: var(--mid);
+    }
   }
 }

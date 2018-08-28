@@ -18,17 +18,19 @@ class List extends React.Component {
     this.keyUp = this.keyUp.bind(this);
     this.itemPress = this.itemPress.bind(this);
     this.itemRelease = this.itemRelease.bind(this);
+    this.scrollerScroll = this.scrollerScroll.bind(this);
     this.state = {
-      movingItem: undefined,
+      movingItemId: undefined,
       movingIndex: undefined,
       newItemText: '',
+      scrolled: false,
     };
   }
 
   getItemClasses(currentList, item) {
     let classes = 'list-item';
     if (currentList.isChecklist) classes += ' with-check';
-    if (this.state.movingItem === item.id) classes += ' moving';
+    if (this.state.movingItemId === item.id) classes += ' moving';
     return classes;
   }
 
@@ -67,7 +69,7 @@ class List extends React.Component {
     this.pressTimer = setTimeout(() => {
       this.setState({
         moveItemSelected: true,
-        movingItem: itemId,
+        movingItemId: itemId,
         movingIndex: itemIndex,
       });
     }, 666);
@@ -76,19 +78,26 @@ class List extends React.Component {
   itemRelease(index) {
     clearTimeout(this.pressTimer);
 
-    if (!this.state.moveItemSelected && this.state.movingItem) {
+    if (!this.state.moveItemSelected && this.state.movingItemId && !this.state.scrolled) {
       this.props.moveItem(this.props.listId, this.state.movingIndex, index);
       this.setState({
-        movingItem: undefined,
+        movingItemId: undefined,
         movingIndex: undefined,
       });
     }
 
-    if (this.state.moveItemSelected) {
-      this.setState({
-        moveItemSelected: false,
-      });
-    }
+    this.setState({
+      scrolled: false,
+      moveItemSelected: false,
+    });
+  }
+
+  scrollerScroll() {
+    clearTimeout(this.pressTimer);
+    this.setState({
+      scrolled: true,
+      moveItemSelected: false,
+    });
   }
 
   render() {
@@ -103,8 +112,8 @@ class List extends React.Component {
           actionLabel={LABELS.EDIT}
           actionClick={this.editList}
         />
-        <div className="list-scroller">
-          <ul className={this.state.movingItem ? 'moving-item' : ''}>
+        <div className="list-scroller" onScroll={this.scrollerScroll}>
+          <ul className={this.state.movingItemId ? 'moving-item' : ''}>
             { currentList.items.map((item, index) => (
               <li
                 key={item.id}

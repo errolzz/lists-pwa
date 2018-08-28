@@ -1,7 +1,20 @@
 @import '../../constants/constants.css';
 
 .home {
+  & .list-title-holder {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    max-height: calc(100% - 80px);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
   & .create-list {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     margin-top: var(--plus-size);
     & button {
       color: var(--mid);

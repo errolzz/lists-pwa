@@ -55,6 +55,24 @@ export function deleteItemFromList(lists, listId, itemId) {
   return newLists;
 }
 
+export function moveListInLists(lists, oldIndex, newIndex) {
+  const newLists = lists.slice();
+  while (oldIndex < 0) {
+    oldIndex += newLists.length;
+  }
+  while (newIndex < 0) {
+    newIndex += newLists.length;
+  }
+  if (newIndex >= newLists.length) {
+    var k = newIndex - newLists.length + 1;
+    while (k--) {
+      newLists.push(undefined);
+    }
+  }
+  newLists.splice(newIndex, 0, newLists.splice(oldIndex, 1)[0]);
+  return newLists;
+}
+
 export function moveItemInList(lists, listId, oldIndex, newIndex) {
   const newLists = lists.slice();
   const listToMoveAround = newLists.find(list => list.id === listId);

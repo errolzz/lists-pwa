@@ -12,7 +12,7 @@ const Button = ({
   <button
     className={classes}
     disabled={disabled}
-    onTouchStart={() => click(data)}
+    onTouchEnd={() => click(data)}
   >
     <span>{ label }</span>
   </button>

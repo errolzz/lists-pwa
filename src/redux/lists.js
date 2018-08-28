@@ -4,6 +4,7 @@ import {
   deleteItemFromList,
   deleteListFromLists,
   moveItemInList,
+  moveListInLists,
   toggleItemInList,
   toggleAllItemsInList,
   updateListInLists,
@@ -22,6 +23,7 @@ const DELETE_LIST = 'features/lists/DELETE_LIST';
 const SHOW_DELETE_ITEM = 'features/lists/SHOW_DELETE_ITEM';
 const DELETE_ITEM = 'features/lists/DELETE_ITEM';
 const MOVE_ITEM = 'features/lists/MOVE_ITEM';
+const MOVE_LIST = 'features/lists/MOVE_LIST';
 const TOGGLE_ITEM = 'features/lists/TOGGLE_ITEM';
 const TOGGLE_ALL_ITEMS = 'features/lists/TOGGLE_ALL_ITEMS';
 
@@ -101,6 +103,11 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         lists: save(moveItemInList(state.lists, action.listId, action.oldIndex, action.newIndex)),
       };
+    case MOVE_LIST:
+      return {
+        ...state,
+        lists: save(moveListInLists(state.lists, action.oldIndex, action.newIndex)),
+      };
     case TOGGLE_ITEM:
       return {
         ...state,
@@ -154,6 +161,10 @@ export function deleteItem(listId, itemId) {
 
 export function moveItem(listId, oldIndex, newIndex) {
   return { type: MOVE_ITEM, listId, oldIndex, newIndex };
+}
+
+export function moveList(listId, oldIndex, newIndex) {
+  return { type: MOVE_LIST, oldIndex, newIndex };
 }
 
 export function toggleItem(listId, itemId) {

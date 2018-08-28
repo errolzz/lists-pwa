@@ -4,6 +4,7 @@ import {
   showList,
   showListForm,
   createList,
+  moveList,
 } from '../../redux/lists';
 import Home from './Home';
 
@@ -19,6 +20,7 @@ const mapDispatchToProps = dispatch => ({
   showList: bindActionCreators(showList, dispatch),
   showListForm: bindActionCreators(showListForm, dispatch),
   createList: bindActionCreators(createList, dispatch),
+  moveList: bindActionCreators(moveList, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
