@@ -4,14 +4,14 @@ A checklist app to replace the iOS reminders app. (which I never use for actual 
 
 ### Features
 - Create lists
-- Toggle them betwee running lists and checklists
-- Reset checklists to use repeatedly
+- Toggle them between running lists and checklists
+- Reset checklists to reuse them
 
 
 ### Notes
-Only uses local storage for data! Careful not to delete.  
+Only uses local storage for data!  
 Meant to be run as a progressive web app on iOS.  
-Does not make any server calls beyon initial page load.  
+Does not make any server calls beyond initial page load.  
 
 
 ### Requirements:
