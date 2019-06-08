@@ -1,6 +1,6 @@
 # Lists
 
-A checklist app to replace the iOS reminders app. (which I never use for actual reminders). 
+A checklist app to replace the iOS reminders app.
 
 ### Features
 - Create lists
